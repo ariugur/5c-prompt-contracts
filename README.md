@@ -7,8 +7,7 @@ git clone https://github.com/username/5c-prompt-contracts.git
 cd 5c-prompt-contracts
 pdflatex main.tex
 bibtex main
-pdflatex main.tex
-pdflatex main.tex
+metadata.yaml
 ```
 # 5C Prompt Contracts: A Minimalist, Creative-Friendly, Token-Efficient Design Framework for Individual and SME LLM Usage
 
