@@ -27,8 +27,7 @@ To compile this LaTeX paper, you will need a standard LaTeX distribution (e.g., 
     ```bash
     pdflatex main.tex
     bibtex main
-    pdflatex main.tex
-    pdflatex main.tex
+    metadata.yaml
     ```
     (Replace `main.tex` with your actual LaTeX file name if different.)
 
