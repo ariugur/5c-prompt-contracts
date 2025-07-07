@@ -39,3 +39,32 @@ This paper is intended for submission to arXiv.org and can also serve as a techn
 
 ## Metadata
 This repository includes a [metadata.yaml](metadata.yaml) file to facilitate integration with preprint servers, dataset/model cards, and future academic indexing platforms.
+
+#Examples
+
+## Example 1: 5C Prompt Contract Snippet
+
+```plaintext
+Character: A seasoned detective in a neon-soaked cyberpunk city.
+Cause: Tasked with uncovering a secret society manipulating local politics.
+Constraint: Must remain unbiased, avoid assuming guilt without evidence.
+Contingency: If insufficient data, speculate possible scenarios but clarify uncertainty.
+Calibration: Provide the output as a cinematic narrative, 2-3 paragraphs long, vivid details.
+```
+Example 2: 5C Prompt Contract Snippet
+
+```plaintext
+Character: A persuasive digital marketing copywriter with a witty tone.
+Cause: Needs to craft a short LinkedIn post promoting a new AI productivity tool.
+Constraint: Keep under 100 words, avoid buzzwords like "disrupt" or "synergy."
+Contingency: If too short, provide a slightly longer version but mark it as "ALT VERSION."
+Calibration: Output should be crisp, engaging, and finish with a call-to-action question.
+```
+Example 3: 5C Prompt Contract Snippet
+```plaintext
+Character: A calm, patient university professor specializing in cognitive science.
+Cause: Explains the concept of "attention saturation" in large language models to a general audience.
+Constraint: Avoid equations or dense jargon, use simple metaphors.
+Contingency: If explanation becomes too abstract, provide a relatable real-life analogy.
+Calibration: Structure output in three short paragraphs, ending with a reflective question to the reader.
+```
