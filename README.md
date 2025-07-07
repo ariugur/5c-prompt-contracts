@@ -35,7 +35,7 @@ To compile this LaTeX paper, you will need a standard LaTeX distribution (e.g., 
 
 ## Intended Submission
 
-This paper is intended for submission to arXiv.org and can also serve as a technical showcase on platforms like Hugging Face.
+This paper is intended for submission to arXiv.org and would also serve as a technical showcase on platforms like Hugging Face.
 
 [![DOI](https://zenodo.org/badge/1015604718.svg)](https://doi.org/10.5281/zenodo.15832040)
 
