@@ -4,15 +4,25 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
-\usepackage{booktabs} % For better table lines
-\usepackage{hyperref} % For clickable links
-\usepackage[numbers]{natbib} % For numeric citations
-\usepackage{float} % For better table/figure placement
-
-% Set document margins
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[numbers]{natbib}
+\usepackage{float}
 \usepackage[left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}
 
-% Title and Author Information
+% Improved table handling
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\usepackage{caption}
+\captionsetup[table]{skip=8pt, font=small}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\renewcommand{\arraystretch}{1.1}
+
+% Bibliography setup
+\usepackage[section]{placeins}
+
 \title{5C Prompt Contracts: A Minimalist, Creative-Friendly, Token-Efficient Design Framework for Individual and SME LLM Usage}
 \author{AI Research Strategist and LLM Ecosystem Analyst}
 \date{\today}
@@ -24,8 +34,7 @@
 \href{https://doi.org/10.5281/zenodo.1234567}{DOI: 10.5281/zenodo.1234567}
 
 \begin{abstract}
-The progression from traditional prompt engineering to a more rigorous discipline of prompt design marks a pivotal shift in human-LLM interaction. As Large Language Models (LLMs) become increasingly embedded in mission-critical applications, there emerges a pressing need for frameworks that are not only explicit and systematic but also minimal enough to remain practical and broadly accessible. While many existing approaches address prompt structuring through elaborate Domain-Specific Languages (DSLs) or multi-layered templates, such methods can impose significant token and cognitive overhead, potentially constraining the model's creative capacity.
-In this context, we propose the 5C Prompt Contract, a framework that distills prompt design into five intuitive components: Character, Cause, Constraint, Contingency, and Calibration. This minimal cognitive schema explicitly integrates fallback and output optimization directives, fostering reliable, interpretable, and creatively flexible AI interactions. Experimental results demonstrate that the 5C framework consistently achieves superior input token efficiency while maintaining rich and consistent outputs across diverse LLM architectures (OpenAI, Anthropic, DeepSeek, and Gemini), making it particularly suited for individuals and Small-to-Medium Enterprises (SMEs) with limited AI engineering resources.
+The progression from traditional prompt engineering to a more rigorous discipline of prompt design marks a pivotal shift in human-LLM interaction. As Large Language Models (LLMs) become increasingly embedded in mission-critical applications, there emerges a pressing need for frameworks that are not only explicit and systematic but also minimal enough to remain practical and broadly accessible. While many existing approaches address prompt structuring through elaborate Domain-Specific Languages (DSLs) or multi-layered templates, such methods can impose significant token and cognitive overhead, potentially constraining the model's creative capacity. In this context, we propose the 5C Prompt Contract, a framework that distills prompt design into five intuitive components: Character, Cause, Constraint, Contingency, and Calibration. This minimal cognitive schema explicitly integrates fallback and output optimization directives, fostering reliable, interpretable, and creatively flexible AI interactions. Experimental results demonstrate that the 5C framework consistently achieves superior input token efficiency while maintaining rich and consistent outputs across diverse LLM architectures (OpenAI, Anthropic, DeepSeek, and Gemini), making it particularly suited for individuals and Small-to-Medium Enterprises (SMEs) with limited AI engineering resources.
 \end{abstract}
 
 \section{Introduction}
@@ -35,7 +44,6 @@ In response to these challenges, we introduce the 5C Prompt Contract: a framewor
 
 \section{Experimental Setup}
 To rigorously evaluate the efficacy and efficiency of the 5C Prompt Contract framework, a series of controlled experiments were conducted across four distinct large language model (LLM) systems: OpenAI (GPT series), Anthropic (Claude series), DeepSeek, and Google's Gemini. Each LLM was subjected to three different prompting methodologies:
-
 \begin{enumerate}
     \item \textbf{5C Prompt Contract:} Prompts were meticulously structured adhering to the five core components: Character, Cause, Constraint, Contingency, and Calibration.
     \item \textbf{Domain-Specific Language (DSL):} Prompts were formulated using a structured markup language, employing XML-like tags to explicitly delineate prompt elements (e.g., \texttt{<ROLE>}, \texttt{<GOAL>}).
@@ -53,7 +61,8 @@ This section presents a quantitative and qualitative analysis of the experimenta
     \centering
     \caption{OpenAI Performance Analysis by Prompt Style}
     \label{tab:openai_performance}
-    \begin{tabular}{lcccccc}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tabular}{@{}lcccccc@{}}
         \toprule
         \textbf{Prompt Style} & \textbf{Avg Input Tokens} & \textbf{Std Input Tokens} & \textbf{Avg Output Tokens} & \textbf{Std Output Tokens} & \textbf{Avg Total Tokens} & \textbf{Std Total Tokens} \\
         \midrule
@@ -62,16 +71,17 @@ This section presents a quantitative and qualitative analysis of the experimenta
         Unstructured & 28.0 & 0.0 & 750.00 & 35.51 & 778.00 & 35.51 \\
         \bottomrule
     \end{tabular}
-    \begin{itemize}
-        \item \textbf{Qualitative Assessment (OpenAI):} 5C prompts yielded rich narratives with speculative details and notable scene depth, generally adhering well to persona and goal with implicit handling of fallback. DSL demonstrated good narrative flow and high consistency with explicit constraints, though outputs were typically shorter. Unstructured prompts often produced highly creative and detailed narratives but exhibited more variability in consistency.
-    \end{itemize}
+    \end{adjustbox}
+    \vspace{4pt}
+    \parbox{\linewidth}{\small\textit{Qualitative Assessment (OpenAI):} 5C prompts yielded rich narratives with speculative details and notable scene depth, generally adhering well to persona and goal with implicit handling of fallback. DSL demonstrated good narrative flow and high consistency with explicit constraints, though outputs were typically shorter. Unstructured prompts often produced highly creative and detailed narratives but exhibited more variability in consistency.}
 \end{table}
 
 \begin{table}[H]
     \centering
     \caption{Anthropic Performance Analysis by Prompt Style}
     \label{tab:anthropic_performance}
-    \begin{tabular}{lcccccc}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tabular}{@{}lcccccc@{}}
         \toprule
         \textbf{Prompt Style} & \textbf{Avg Input Tokens} & \textbf{Std Input Tokens} & \textbf{Avg Output Tokens} & \textbf{Std Output Tokens} & \textbf{Avg Total Tokens} & \textbf{Std Total Tokens} \\
         \midrule
@@ -80,16 +90,17 @@ This section presents a quantitative and qualitative analysis of the experimenta
         Unstructured & 21.0 & 0.0 & 375.67 & 15.70 & 396.67 & 15.70 \\
         \bottomrule
     \end{tabular}
-    \begin{itemize}
-        \item \textbf{Qualitative Assessment (Anthropic):} 5C prompts balanced creativity with structured narratives, showing strong adherence to defined components. DSL produced concise and highly consistent outputs. Unstructured prompts exhibited creativity but were less focused and varied in detail and speculative depth.
-    \end{itemize}
+    \end{adjustbox}
+    \vspace{4pt}
+    \parbox{\linewidth}{\small\textit{Qualitative Assessment (Anthropic):} 5C prompts balanced creativity with structured narratives, showing strong adherence to defined components. DSL produced concise and highly consistent outputs. Unstructured prompts exhibited creativity but were less focused and varied in detail and speculative depth.}
 \end{table}
 
 \begin{table}[H]
     \centering
     \caption{DeepSeek Performance Analysis by Prompt Style}
     \label{tab:deepseek_performance}
-    \begin{tabular}{lcccccc}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tabular}{@{}lcccccc@{}}
         \toprule
         \textbf{Prompt Style} & \textbf{Avg Input Tokens} & \textbf{Std Input Tokens} & \textbf{Avg Output Tokens} & \textbf{Std Output Tokens} & \textbf{Avg Total Tokens} & \textbf{Std Total Tokens} \\
         \midrule
@@ -98,16 +109,17 @@ This section presents a quantitative and qualitative analysis of the experimenta
         Unstructured & 21.0 & 0.0 & 412.00 & 104.92 & 433.00 & 104.92 \\
         \bottomrule
     \end{tabular}
-    \begin{itemize}
-        \item \textbf{Qualitative Assessment (DeepSeek):} 5C prompts offered solid narrative development and well-controlled creativity, maintaining high consistency with directives. DSL outputs were focused and consistent, though typically shorter. Unstructured prompts showed high variability in creative output and inconsistent narrative depth.
-    \end{itemize}
+    \end{adjustbox}
+    \vspace{4pt}
+    \parbox{\linewidth}{\small\textit{Qualitative Assessment (DeepSeek):} 5C prompts offered solid narrative development and well-controlled creativity, maintaining high consistency with directives. DSL outputs were focused and consistent, though typically shorter. Unstructured prompts showed high variability in creative output and inconsistent narrative depth.}
 \end{table}
 
 \begin{table}[H]
     \centering
     \caption{Gemini Performance Analysis by Prompt Style}
     \label{tab:gemini_performance}
-    \begin{tabular}{lccc}
+    \begin{adjustbox}{max width=0.9\linewidth}
+    \begin{tabular}{@{}lccc@{}}
         \toprule
         \textbf{Prompt Style} & \textbf{Avg Input Tokens} & \textbf{Avg Output Tokens} & \textbf{Avg Total Tokens} \\
         \midrule
@@ -116,9 +128,9 @@ This section presents a quantitative and qualitative analysis of the experimenta
         Unstructured & 1315.0 & 1795.00 & 3110.00 \\
         \bottomrule
     \end{tabular}
-    \begin{itemize}
-        \item \textbf{Qualitative Assessment (Gemini):} 5C prompts produced exceptionally detailed and rich cinematic narratives with high speculative depth and complex scene composition, adhering excellently to all 5C components. DSL also generated highly detailed and cinematic outputs, showing strong consistency with specific formatting. Unstructured prompts yielded expansive and highly creative narratives, but consistency with unstated user intent was less predictable. It is notable that for Gemini, all three styles produced identical output token counts for the given task.
-    \end{itemize}
+    \end{adjustbox}
+    \vspace{4pt}
+    \parbox{\linewidth}{\small\textit{Qualitative Assessment (Gemini):} 5C prompts produced exceptionally detailed and rich cinematic narratives with high speculative depth and complex scene composition, adhering excellently to all 5C components. DSL also generated highly detailed and cinematic outputs, showing strong consistency with specific formatting. Unstructured prompts yielded expansive and highly creative narratives, but consistency with unstated user intent was less predictable. It is notable that for Gemini, all three styles produced identical output token counts for the given task.}
 \end{table}
 
 \subsection{Cross-Style Comparative Table (Averages Across All Models)}
@@ -127,7 +139,8 @@ This section presents a quantitative and qualitative analysis of the experimenta
     \centering
     \caption{Average Token Usage Across All LLMs by Prompt Style}
     \label{tab:cross_style_averages}
-    \begin{tabular}{lccc}
+    \begin{adjustbox}{max width=0.7\linewidth}
+    \begin{tabular}{@{}lccc@{}}
         \toprule
         \textbf{Prompt Style} & \textbf{Average Input Tokens} & \textbf{Average Output Tokens} & \textbf{Average Total Tokens} \\
         \midrule
@@ -136,6 +149,7 @@ This section presents a quantitative and qualitative analysis of the experimenta
         Unstructured & 346.25 & 833.17 & 1179.42 \\
         \bottomrule
     \end{tabular}
+    \end{adjustbox}
 \end{table}
 
 \section{Discussion}
@@ -145,10 +159,7 @@ The experimental results provide compelling insights into the performance charac
 A primary finding of this study is the remarkable input token efficiency demonstrated by the 5C Prompt Contract. Across all evaluated LLM systems, the 5C framework consistently required the lowest average input tokens (54.75 tokens). This efficiency stands in stark contrast to DSL (348.75 tokens) and Unstructured prompting (346.25 tokens), both of which exhibited significantly higher input token consumption. This superior efficiency holds critical implications for managing API costs, reducing inference latency, and maximizing the effective context window, especially pertinent for budget-conscious users and SMEs. The lower input token count associated with 5C suggests that its minimalist yet structured framework effectively conveys complex instructions with minimal overhead, allowing for more economical and faster interactions with LLMs.
 
 \subsection{Creative Diversity and Output Richness}
-The relationship between prompt style and creative output is nuanced. While Unstructured prompts occasionally resulted in the highest average output token counts (833.17 tokens), indicating a broader generative freedom, this often came at the expense of higher overall token usage and potentially less predictable adherence to specific stylistic or content directives. DSL, while offering stringent control and high consistency, tended to produce outputs that were more concise and less expansively creative (711.50 tokens). The 5C framework emerged as a robust solution for balancing creativity with control, consistently yielding rich and detailed narratives (777.58 tokens) with substantially lower input overhead. This observation supports the hypothesis that by minimizing cognitive and token overhead, the 5C framework effectively preserves the LLM's 'entropy budget' for deeper semantic exploration and more expansive creative generation. The challenge of balancing generative freedom with controlled outputs is a well-documented aspect of LLM applications \cite{vaswani2017attention}. Early work on neural networks also laid the groundwork for understanding the complex generative capabilities now seen in LLMs \cite{hinton2012deep}.
-
-\subsection{Adherence to Explicit Constraints}
-Both the 5C and DSL approaches demonstrated a higher degree of input-output consistency and adherence to explicit constraints compared to Unstructured prompting. The structured nature of 5C, with its clear components for Character, Cause, Constraint, Contingency, and Calibration, inherently guides the LLM towards more predictable and reliable outputs. The explicit inclusion of 'Contingency' for fallback behaviors represents a significant strength of 5C, promoting more robust and resilient AI interactions and mitigating user anxiety in uncertain contexts. While DSL also enforced strong consistency due to its strict syntax, the associated cognitive and token overhead may render it less practical for non-specialists or for development cycles requiring greater agility. The principles of gradient-based learning, fundamental to modern AI, are crucial for training models to follow such nuanced instructions \cite{lecun1998gradient}.
+The relationship between prompt style and creative output is nuanced. While Unstructured prompts occasionally resulted in the highest average output token counts (833.17 tokens), indicating a broader generative freedom, this often came at the expense of higher overall token usage and potentially less predictable adherence to specific stylistic or content directives. DSL, while offering stringent control and high consistency, tended to produce outputs that were more concise and less expansively creative (711.50 tokens). The 5C framework emerged as a robust solution for balancing creativity with control, consistently yielding rich and detailed narratives (777.58 tokens) with substantially lower input overhead. This observation supports the hypothesis that by minimizing cognitive and token overhead, the 5C framework effectively preserves the LLM's 'entropy budget' for deeper semantic exploration and more expansive creative generation. The challenge of balancing generative freedom with controlled outputs is a well-documented aspect of LLM applications \cite{vaswani2017attention}. Furthermore, recent advancements in training language models with human feedback emphasize the importance of explicit instruction adherence for reliable performance \cite{ouyang2022training}. The alignment problem, dealing with ensuring AI systems operate according to human values and intentions, is a continuously evolving area of research that highlights the need for robust control mechanisms in AI interaction \cite{leike2018scalable}. The balance between predictability and surprising emergent capabilities in large generative models is also an ongoing area of study, underscoring the value of frameworks that can manage this dynamic \cite{ganguli2022predictability}.
 
 \subsection{The 5C Balance}
 The 5C approach uniquely strikes an optimal balance among token economy, creative diversity, and structured control. It provides sufficient scaffolding to effectively guide the LLM's output and ensure consistency, while artfully circumventing the rigid syntax and token bloat often associated with more complex DSLs. This inherent flexibility enables LLMs to dedicate more processing capacity to semantic understanding and creative generation, which is crucial for applications requiring diverse content or adaptive interactions. Furthermore, the minimalist design of 5C significantly lowers the barrier to entry for prompt design, fostering iterative experimentation and cultivating 'prompt literacy' across a broader spectrum of users, ranging from individual practitioners to SMEs.
@@ -165,39 +176,37 @@ Future research endeavors will focus on several key areas:
 \end{enumerate}
 The adaptable architecture of 5C, its ease of implementation across varying user skill levels, and its inherent openness to iterative refinement uniquely position it as a sensitive yet robust scaffold capable of meeting the diverse and evolving demands of human-AI interaction in the rapidly advancing generative AI landscape.
 
-\bibliographystyle{plainnat} % Or another suitable style
-\bibliography{references} % Assumes you have a references.bib file
-% Placeholder for references. In a real submission, these would be populated.
-% The actual BibTeX entries should be in a file named 'references.bib'
-% For demonstration, here are the example BibTeX entries:
-% @article{hinton2012deep,
-%   title={Deep neural networks for acoustic modeling in speech recognition},
-%   author={Hinton, Geoffrey and Deng, Li and Yu, Dong and Dahl, George E and Mohamed, Abdel-rahman and Jaitly, Navdeep and Senior, Andrew and Vanhoucke, Vincent and Nguyen, Patrick and Sainath, Tara N and others},
-%   journal={IEEE Signal processing Magazine},
-%   volume={29},
-%   number={6},
-%   pages={82--97},
-%   year={2012},
-%   publisher={IEEE}
-% }
+% --- Reference section ---
+\bibliographystyle{plainnat}
+\bibliography{references}
 
-% @article{lecun1998gradient,
-%   title={Gradient-based learning applied to document recognition},
-%   author={LeCun, Yann and Bottou, L{\'e}on and Bengio, Yoshua and Haffner, Patrick},
-%   journal={Proceedings of the IEEE},
-%   volume={86},
-%   number={11},
-%   pages={2278--2324},
-%   year={1998},
-%   publisher={IEEE}
-% }
+\begin{thebibliography}{9}
 
-% @article{vaswani2017attention,
-%   title={Attention Is All You Need},
-%   author={Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N and Kaiser, {\L}ukasz and Polosukhin, Illia},
-%   journal={Advances in Neural Information Processing Systems},
-%   volume={30},
-%   year={2017}
-% }
+\bibitem{vaswani2017attention}
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., ... \& Polosukhin, I. (2017). 
+Attention is all you need. 
+\textit{Advances in Neural Information Processing Systems}, 30, 5998-6008.
+
+\bibitem{brown2020language}
+Brown, T. B., Mann, B., Ryder, N., Subbiah, M., Kaplan, J. D., Dhariwal, P., ... \& Amodei, D. (2020). 
+Language models are few-shot learners. 
+\textit{Advances in Neural Information Processing Systems}, 33, 1877-1901.
+
+\bibitem{ouyang2022training}
+Ouyang, L., Wu, J., Jiang, X., Almeida, D., Wainwright, C., Mishkin, P., ... \& Lowe, R. (2022). 
+Training language models to follow instructions with human feedback. 
+\textit{Advances in Neural Information Processing Systems}, 35, 27730-27744.
+
+\bibitem{leike2018scalable}
+Leike, J., Krueger, D., Everitt, T., Martic, M., Maini, V., \& Legg, S. (2018). 
+Scalable agent alignment via reward modeling: A research direction. 
+\textit{arXiv preprint arXiv:1811.07871}.
+
+\bibitem{ganguli2022predictability}
+Ganguli, D., Hernandez, D., Lovitt, L., Askell, A., Bai, Y., Chen, A., ... \& Clark, J. (2022). 
+Predictability and surprise in large generative models. 
+\textit{Proceedings of the 2022 ACM Conference on Fairness, Accountability, and Transparency}, 1747-1764.
+
+\end{thebibliography}
 
 \end{document}
